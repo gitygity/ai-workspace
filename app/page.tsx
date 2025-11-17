@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
 import Image from "next/image";
+import { prisma } from "../lib/prisma";
 
 export default function Home() {
   async function main() {

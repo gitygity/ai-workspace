@@ -42,3 +42,9 @@ enum Role {
   USER
   ADMIN
 }
+
+model Message{
+  id String @id @default(ulid())
+  text String 
+  createdAt DateTime @default(now())
+}
