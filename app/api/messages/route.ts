@@ -3,7 +3,7 @@ import { prisma } from "../../../lib/prisma";
 
 export async function GET() {
     try {
-       const messages= prisma.message.findMany({orderBy: {createdAt:'desc'}})
+       const messages=await prisma.message.findMany({orderBy: {createdAt:'desc'}})
 
        return NextResponse.json(messages,{status:200})
         
@@ -22,7 +22,7 @@ export async function POST(req:Request) {
 
         if(!text) return NextResponse.json({error:"Text is required"},{status:400})
 
-        const message=prisma.message.create({
+        const message=await prisma.message.create({
           data:{text}
         })
 

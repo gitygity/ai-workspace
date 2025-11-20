@@ -1,18 +1,23 @@
 "use client";
 
 import { useMessageStore } from "@/store/messageStore";
-import { Message } from "@/types/models";
 import { useEffect } from "react";
 
-export default function MessageList({initialMessages}:{initialMessages :Message[]}) {
-  const { messages, setMessages } = useMessageStore();
 
-  useEffect(() => {
-    setMessages(initialMessages);
-  }, [initialMessages,setMessages]);
 
+export default function MessageList() {
+  const fetchMessages = useMessageStore((s) => s.fetchMessages);
+const messages = useMessageStore((s) => {
+  return s.messages;
+});
+
+  
+  useEffect(()=>{ 
+    fetchMessages()
+  },[fetchMessages])
+  
   return (
-    <div className="space-y-3">
+    <div className="space-y-3">{messages.length}
       {messages?.map((m) => (
         <div key={m.id} className="p-3 bg-gray-100 rounded-md">
           <p>{m.text}</p>
