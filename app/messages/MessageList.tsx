@@ -1,6 +1,6 @@
 "use client";
 
-import { useMessageStore } from "@/store/messageStore";
+import { useMessageStore } from "../../store/messageStore";
 import { useEffect } from "react";
 
 

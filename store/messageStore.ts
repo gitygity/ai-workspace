@@ -1,4 +1,4 @@
-import { Message } from "@/types/models";
+import { Message } from "../types/models";
 import { create } from "zustand";
 
 type MessageStore = {

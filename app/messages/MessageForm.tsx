@@ -1,7 +1,7 @@
 "use client";
 
-import { createMessageAction } from "@/actions/messageActions";
-import { useMessageStore } from "@/store/messageStore";
+import { createMessageAction } from "../../actions/messageActions";
+import { useMessageStore } from "../../store/messageStore";
 import {useState } from "react";
 
 export default function MessageForm() {
