@@ -8,8 +8,9 @@ export type Message = {
 export type Role='USER'|'ADMIN'
 export interface User  {
     id: string;
-  name?: string | null;
-  email?: string | null;
+  name?: string ;
+  email?: string ;
   role?: Role;
+  password?:string
 };
 
