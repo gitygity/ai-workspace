@@ -1,6 +1,8 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
@@ -10,6 +12,7 @@ interface loginForm {
 }
 export default function LoginPage() {
     const [error,setError]=useState('')
+    const { data: session } = useSession();
   const [loginForm, setLoginForm] = useState<loginForm>({
     email: "",
     password: "",
@@ -27,8 +30,16 @@ export default function LoginPage() {
         setError('wrong Email or Password') 
         return
     }
-    router.push('/messages')
+    redirectToDashboard()
   };
+
+  const redirectToDashboard=()=>{
+    if(session?.user?.role==='ADMIN'){
+      router.push('/admin/dashboard')
+      return
+    }
+    router.push('/user/dashboard')
+  }
 
   const handleSetForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;

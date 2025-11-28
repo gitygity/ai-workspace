@@ -1,8 +1,8 @@
 import NextAuth ,{ NextAuthOptions }  from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "../../../../lib/prisma";
 import { User } from "@/types/models";
 import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
   adapter: {},
@@ -32,6 +32,7 @@ export const authOptions: NextAuthOptions = {
     email: user.email,
     role: user.role,
   };
+
       },
     }),
   ],

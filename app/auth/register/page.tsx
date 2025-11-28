@@ -59,6 +59,7 @@ export default function RegisterPage() {
         </label>
         <fieldset>
           <legend> Enter your role</legend>
+          {registerForm?.role }
           <label htmlFor="role-user">
             <input
               type="radio"

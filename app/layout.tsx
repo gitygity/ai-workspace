@@ -1,8 +1,8 @@
+'use client'
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth/next";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,26 +14,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "AI workspace App",
-  description: "this app powered by AI",
-};
 
-export default async function RootLayout({
+
+export default  function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const sesstion=await getServerSession(authOptions)
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <h1>user name: {sesstion?.user.name}</h1>
-        <h2>user Role: {sesstion?.user.role==='ADMIN'?'admin':'user'}</h2>
-        <h2>user email: {sesstion?.user.email}</h2>
-        {children}
+       <SessionProvider> {children}</SessionProvider> 
       </body>
     </html>
   );
